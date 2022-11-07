@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "Character",
 "language": "GDScript",
-"path": "res://Character.gd"
+"path": "res://src/Characters/Character.gd"
 }, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
