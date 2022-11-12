@@ -13,15 +13,9 @@ _global_script_classes=[ {
 "class": "Character",
 "language": "GDScript",
 "path": "res://src/Characters/Character.gd"
-}, {
-"base": "EditorVCSInterface",
-"class": "GitAPI",
-"language": "NativeScript",
-"path": "res://addons/godot-git-plugin/git_api.gdns"
 } ]
 _global_script_class_icons={
-"Character": "",
-"GitAPI": ""
+"Character": ""
 }
 
 [application]
@@ -37,7 +31,7 @@ version_control_plugin_name="GitAPI"
 
 [gdnative]
 
-singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
+singletons=[  ]
 
 [gui]
 
