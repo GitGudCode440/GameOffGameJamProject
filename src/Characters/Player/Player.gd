@@ -9,6 +9,11 @@ func _process(delta):
 	)
 	
 	
+	if res.direction != Vector3.ZERO:
+		res.velocity = lerp(res.velocity, res.direction * res.speed, res.accelerationRate)
+	else:
+		res.velocity = lerp(res.velocity, Vector3.ZERO, res.deccelerationRate)
+	
 
 func _physics_process(delta):
 	res.velocity.y = move_and_slide(res.velocity).y
