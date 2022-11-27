@@ -1,7 +1,6 @@
 extends Resource
 
 export var speed : float
-export var gravity : float
 export var health : int
 
 export var accelerationRate : float

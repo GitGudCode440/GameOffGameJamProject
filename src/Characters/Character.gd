@@ -2,6 +2,9 @@ extends KinematicBody
 class_name Character
 
 export var res : Resource
+export var gravity : float = 98
 
-func _physics_process(delta):
-	pass
+func apply_gravity():
+	res.direction.y = -1.0 if !is_on_floor() else 0.0
+	res.velocity.y = gravity * res.direction.y * get_physics_process_delta_time()
+	
