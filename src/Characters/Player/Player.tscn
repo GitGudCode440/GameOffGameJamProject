@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/Characters/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Characters/Player/Player.gd" type="Script" id=2]
@@ -7,18 +7,14 @@
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
 speed = 5.0
-gravity = 0.0
+gravity = 2.0
 health = 0
 accelerationRate = 0.05
 deccelerationRate = 0.25
-
-[sub_resource type="CapsuleMesh" id=2]
-mid_height = 2.0
 
 [node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 res = SubResource( 1 )
 
-[node name="MeshInstance" type="MeshInstance" parent="." index="1"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.011866, 0 )
-mesh = SubResource( 2 )
+[node name="CollisionShape" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )

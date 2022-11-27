@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Characters/Character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Characters/Red Barell/mesh/source/RedBarrel.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://src/Characters/Red Barell/mesh/source/RedBarrel.material" type="Material" id=3]
+[ext_resource path="res://src/Characters/Red Barell/RedBarrel.gd" type="Script" id=4]
+[ext_resource path="res://src/Resources/character_stats.gd" type="Script" id=5]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 5 )
+speed = 2.0
+gravity = 0.0
+health = 0
+accelerationRate = 0.0
+deccelerationRate = 0.0
+
+[node name="Red Barrel" instance=ExtResource( 1 )]
+script = ExtResource( 4 )
+res = SubResource( 1 )
+
+[node name="CollisionShape" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0 )
+
+[node name="MeshInstance" parent="." index="1"]
+transform = Transform( 19, 0, 0, 0, 19, 0, 0, 0, 19, 0, 0, 0 )
+material_override = ExtResource( 3 )
+mesh = ExtResource( 2 )

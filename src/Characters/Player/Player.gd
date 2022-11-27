@@ -16,4 +16,4 @@ func _process(delta):
 	
 
 func _physics_process(delta):
-	res.velocity.y = move_and_slide(res.velocity).y
+	res.velocity = move_and_slide(res.velocity)
