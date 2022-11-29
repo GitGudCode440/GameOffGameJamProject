@@ -5,18 +5,23 @@ func _process(delta):
 	calculate_velocity()
 	
 func _physics_process(delta):
+	print(res.velocity.y)
 	res.velocity = move_and_slide(res.velocity, Vector3.UP)
 	self.apply_gravity()
 	
+
 func set_direction():
 	res.direction = Vector3(
 		(Input.get_action_strength("move_left") - Input.get_action_strength("move_right")),
-		0.0,
+		set_y_direction(jump_states.WITH_JUMP, (Input.is_action_just_pressed("jump") and is_on_floor())),
 		(Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward"))
 	)
 	
+
 func calculate_velocity():
-	if res.direction != Vector3.ZERO:
-		res.velocity = lerp(res.velocity, res.direction * res.speed, res.accelerationRate)
+	if res.direction.x or res.direction.z != 0.0:
+		res.velocity.x = lerp(res.velocity.x, res.direction.x * res.speed, res.accelerationRate)
+		res.velocity.z = lerp(res.velocity.z, res.direction.z * res.speed, res.accelerationRate)
 	else:
-		res.velocity = lerp(res.velocity, Vector3.ZERO, res.deccelerationRate)
+		res.velocity.x = lerp(res.velocity.x, 0.0, res.deccelerationRate)
+		res.velocity.z = lerp(res.velocity.z, 0.0, res.deccelerationRate)
