@@ -1,11 +1,31 @@
 extends Character
 
+
+const MOUSE_SENSITIVITY = 0.05
+const MAX_ROTATION_DEGREES = 60
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 func _process(delta):
 	set_direction()
 	calculate_velocity()
+
+func _input(event):
 	
+	
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
+	
+	if event is InputEventMouseMotion:
+		rotation_degrees.y += -event.relative.x * MOUSE_SENSITIVITY
+		$Camera.rotation_degrees.x += clamp(-event.relative.y * MOUSE_SENSITIVITY, -MAX_ROTATION_DEGREES, MAX_ROTATION_DEGREES)
+		print($Camera.rotation_degrees.x)
+		
+	
+	
+
 func _physics_process(delta):
-	print(res.velocity.y)
 	res.velocity = move_and_slide(res.velocity, Vector3.UP)
 	self.apply_gravity()
 	

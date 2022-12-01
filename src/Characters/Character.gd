@@ -11,7 +11,7 @@ export var gravity : float = 98
 enum jump_states {WITH_JUMP, WITHOUT_JUMP} 
 
 func apply_gravity():
-	res.velocity.y -= gravity * res.direction.y  
+	res.velocity.y += gravity * res.direction.y  
 	
 
 func set_direction() -> void:
@@ -31,7 +31,7 @@ func set_y_direction(_enum : int, isJumping : bool = false) -> float:
 			y_direction = -1.0
 		else:
 			y_direction = 0.0
-	elif _enum == jump_states.WITHOUT_JUMP:
+	else:
 		if !is_on_floor():
 			y_direction = -1.0
 		else:
