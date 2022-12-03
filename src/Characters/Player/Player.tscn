@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
-speed = 5.0
+speed = 8.0
 health = 0
 accelerationRate = 0.01
 deccelerationRate = 0.01
@@ -14,9 +14,6 @@ deccelerationRate = 0.01
 [node name="Player" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 res = SubResource( 1 )
-
-[node name="CollisionShape" parent="." index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="." index="2"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0 )

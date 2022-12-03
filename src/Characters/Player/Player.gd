@@ -1,5 +1,6 @@
 extends Character
 
+var inputDirection : Vector3
 
 const MOUSE_SENSITIVITY = 0.05
 const MAX_ROTATION_DEGREES = 60
@@ -8,6 +9,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(delta):
+	set_inputDirection()
 	set_direction()
 	calculate_velocity()
 
@@ -19,27 +21,32 @@ func _input(event):
 	
 	if event is InputEventMouseMotion:
 		rotation_degrees.y += -event.relative.x * MOUSE_SENSITIVITY
-		$Camera.rotation_degrees.x += clamp(-event.relative.y * MOUSE_SENSITIVITY, -MAX_ROTATION_DEGREES, MAX_ROTATION_DEGREES)
-		print($Camera.rotation_degrees.x)
+		$Camera.rotation_degrees.x += -event.relative.y * MOUSE_SENSITIVITY
+		$Camera.rotation_degrees.x = clamp($Camera.rotation_degrees.x, -MAX_ROTATION_DEGREES, MAX_ROTATION_DEGREES)
 		
-	
-	
-
+		
 func _physics_process(delta):
 	res.velocity = move_and_slide(res.velocity, Vector3.UP)
 	self.apply_gravity()
 	
-
-func set_direction():
-	res.direction = Vector3(
+func set_inputDirection():
+	inputDirection = Vector3(
 		(Input.get_action_strength("move_left") - Input.get_action_strength("move_right")),
-		set_y_direction(jump_states.WITH_JUMP, (Input.is_action_just_pressed("jump") and is_on_floor())),
+		set_y_direction(jump_states.WITH_JUMP, Input.is_action_just_pressed("jump") && is_on_floor()),
 		(Input.get_action_strength("move_forward") - Input.get_action_strength("move_backward"))
 	)
+
+func set_direction():
+	
+	res.direction += inputDirection.x * transform.basis.x
+	res.direction += inputDirection.z * transform.basis.z
+	res.direction.y = inputDirection.y
+	
+	res.direction = res.direction.normalized()
 	
 
 func calculate_velocity():
-	if res.direction.x or res.direction.z != 0.0:
+	if inputDirection.x or inputDirection.z != 0.0:
 		res.velocity.x = lerp(res.velocity.x, res.direction.x * res.speed, res.accelerationRate)
 		res.velocity.z = lerp(res.velocity.z, res.direction.z * res.speed, res.accelerationRate)
 	else:
