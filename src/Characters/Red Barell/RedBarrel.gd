@@ -23,3 +23,6 @@ func _physics_process(delta):
 	
 	res.velocity = move_and_slide(res.velocity, Vector3.UP)
 	self.apply_gravity()
+
+func hurt():
+	print("Ouch!")

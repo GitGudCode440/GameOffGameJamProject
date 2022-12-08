@@ -5,26 +5,35 @@ var inputDirection : Vector3
 const MOUSE_SENSITIVITY = 0.05
 const MAX_ROTATION_DEGREES = 60
 
-func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+var toggleMouse := false
+
+onready var collidingRay : RayCast = $Camera/RayCast
+
 
 func _process(delta):
+	
 	set_inputDirection()
 	set_direction()
+	
 	calculate_velocity()
 
 func _input(event):
+	if Input.is_action_pressed("shoot"):
+		shoot()
 	
 	
 	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
+		toggleMouse = !toggleMouse
+	
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if toggleMouse else Input.MOUSE_MODE_CAPTURED)
+	
 	
 	if event is InputEventMouseMotion:
 		rotation_degrees.y += -event.relative.x * MOUSE_SENSITIVITY
 		$Camera.rotation_degrees.x += -event.relative.y * MOUSE_SENSITIVITY
 		$Camera.rotation_degrees.x = clamp($Camera.rotation_degrees.x, -MAX_ROTATION_DEGREES, MAX_ROTATION_DEGREES)
-		
-		
+	
+
 func _physics_process(delta):
 	res.velocity = move_and_slide(res.velocity, Vector3.UP)
 	self.apply_gravity()
@@ -52,3 +61,14 @@ func calculate_velocity():
 	else:
 		res.velocity.x = lerp(res.velocity.x, 0.0, res.deccelerationRate)
 		res.velocity.z = lerp(res.velocity.z, 0.0, res.deccelerationRate)
+	
+func shoot():
+	
+	var barrel : KinematicBody = get_tree().get_root().find_node("Red Barell", true, false)
+	var collidedObject = collidingRay.get_collider()
+	
+	
+	if collidedObject == barrel:
+		barrel.hurt()
+	
+

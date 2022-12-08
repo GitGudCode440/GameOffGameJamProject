@@ -18,7 +18,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.83492, 0 )
 transform = Transform( 1, 0, 0, 0, 0.421716, 0.906728, 0, -0.906728, 0.421716, 0, 11.1669, 10.4449 )
 shadow_enabled = true
 
-[node name="Red Barrell" parent="." instance=ExtResource( 2 )]
+[node name="Red Barell" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.397, 3.51384, 8.816 )
 
 [node name="Ground" type="StaticBody" parent="."]
