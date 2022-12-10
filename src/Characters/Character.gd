@@ -36,6 +36,12 @@ func set_y_direction(_enum : int, isJumping : bool = false) -> float:
 			y_direction = -1.0
 		else:
 			y_direction = 0.0
-	
+
 	return y_direction
 	
+func hurt():
+	res.health -= 1
+	print(res.health)
+	
+	if res.health == 0:
+		queue_free()

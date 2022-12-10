@@ -19,7 +19,7 @@ transform = Transform( 1, 0, 0, 0, 0.421716, 0.906728, 0, -0.906728, 0.421716, 0
 shadow_enabled = true
 
 [node name="Red Barell" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.397, 3.51384, 8.816 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 3.7, 14 )
 
 [node name="Ground" type="StaticBody" parent="."]
 

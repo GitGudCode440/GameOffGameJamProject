@@ -2,7 +2,7 @@ extends Character
 
 var inputDirection : Vector3
 
-const MOUSE_SENSITIVITY = 0.05
+const MOUSE_SENSITIVITY := 5.0
 const MAX_ROTATION_DEGREES = 60
 
 var toggleMouse := false
@@ -18,7 +18,7 @@ func _process(delta):
 	calculate_velocity()
 
 func _input(event):
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		shoot()
 	
 	
@@ -29,8 +29,8 @@ func _input(event):
 	
 	
 	if event is InputEventMouseMotion:
-		rotation_degrees.y += -event.relative.x * MOUSE_SENSITIVITY
-		$Camera.rotation_degrees.x += -event.relative.y * MOUSE_SENSITIVITY
+		rotation_degrees.y += -event.relative.x * MOUSE_SENSITIVITY * get_process_delta_time()
+		$Camera.rotation_degrees.x += -event.relative.y * MOUSE_SENSITIVITY * get_process_delta_time()
 		$Camera.rotation_degrees.x = clamp($Camera.rotation_degrees.x, -MAX_ROTATION_DEGREES, MAX_ROTATION_DEGREES)
 	
 

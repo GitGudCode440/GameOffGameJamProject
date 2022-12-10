@@ -9,7 +9,7 @@
 [sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
 speed = 2.0
-health = 0
+health = 3
 accelerationRate = 0.0
 deccelerationRate = 0.0
 
