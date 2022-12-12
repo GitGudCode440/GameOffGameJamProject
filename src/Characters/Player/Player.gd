@@ -64,11 +64,11 @@ func calculate_velocity():
 	
 func shoot():
 	
-	var barrel : KinematicBody = get_tree().get_root().find_node("Red Barell", true, false)
+	var barrel : Array = get_tree().get_nodes_in_group("Red Barrel")
 	var collidedObject = collidingRay.get_collider()
 	
 	
-	if collidedObject == barrel:
-		barrel.hurt()
-	
+	for i in barrel:
+		if collidedObject == i:
+			i.hurt()
 
