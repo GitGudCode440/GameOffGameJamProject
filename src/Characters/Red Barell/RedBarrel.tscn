@@ -10,7 +10,7 @@
 script = ExtResource( 5 )
 speed = 2.0
 health = 3
-accelerationRate = 0.0
+accelerationRate = 0.25
 deccelerationRate = 0.0
 
 [node name="Red Barrel" instance=ExtResource( 1 )]

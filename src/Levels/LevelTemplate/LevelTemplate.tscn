@@ -6,16 +6,16 @@
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 3 )
-speed = 2.0
+speed = 12.0
 health = 3
-accelerationRate = 0.0
+accelerationRate = 0.01
 deccelerationRate = 0.0
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 3 )
-speed = 2.0
+speed = 12.0
 health = 4
-accelerationRate = 0.0
+accelerationRate = 0.01
 deccelerationRate = 0.0
 
 [sub_resource type="CubeMesh" id=1]

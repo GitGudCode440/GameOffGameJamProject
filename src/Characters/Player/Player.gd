@@ -1,5 +1,8 @@
 extends Character
 
+var score := 0
+onready var scoreText := $Camera/CanvasLayer/Control/ScoreText
+
 var inputDirection : Vector3
 
 const MOUSE_SENSITIVITY := 5.0
@@ -71,4 +74,6 @@ func shoot():
 	for i in barrel:
 		if collidedObject == i:
 			i.hurt()
+			score += 10
+			scoreText.text = "SCORE: " + str(score)
 

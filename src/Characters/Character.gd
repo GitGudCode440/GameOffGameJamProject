@@ -41,7 +41,6 @@ func set_y_direction(_enum : int, isJumping : bool = false) -> float:
 	
 func hurt():
 	res.health -= 1
-	print(res.health)
 	
 	if res.health == 0:
 		queue_free()
